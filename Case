@@ -1,0 +1,16 @@
+ public ResponseEntity sum( //responseentity is for http
+            @RequestParam("num1") int num1,//@Valid @Min(value = 0, message = "num1 must be a positive integer") int num1,//@min why used if exception handling is used
+            @RequestParam("num2") int num2 //@Valid @Min(value = 0, message = "num2 must be a positive integer") int num2
+    ) {
+        try {
+            //Check if inputs are valid
+            if (num1 < 0 || num2 < 0) { //logical or
+                throw new  IllegalArgumentException("Validation failed", null);//.message printStackTrace()
+            }
+//illarg
+            // Perform the sum if validation passes
+            int result = num1 + num2;
+
+            // Return the result as a response
+            String responseMessage = "Sum of " + num1 + " and " + num2 + " is: " + result;
+            return ResponseEntity.ok(responseMessage);
